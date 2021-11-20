@@ -12,6 +12,7 @@ RSpec.describe "Projects", type: :system do
 
     expect {
       click_link "New Project"
+      save_page
       fill_in "Name", with: "Test Project"
       fill_in "Description", with: "Trying out Capybara"
       click_button "Create Project"

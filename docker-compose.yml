@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    # portsは -pの役割
+    ports:
+      - '8888:8888'
+    # volumesは -vの役割
+    volumes:
+      - '.:/rspec-tutorial'
+
+    # ttyは -itのtを意味してる
+    tty: true
+    # -iを意味してる
+    stdin_open: true
+    environment: #以下追記
+      - SELENIUM_DRIVER_URL=http://selenium_chrome:4444//wd/hub
+    depends_on:
+      - selenium_chrome
+
+  selenium_chrome:
+    image: selenium/standalone-chrome-debug
+    logging:
+      driver: none
