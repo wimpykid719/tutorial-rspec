@@ -9,13 +9,14 @@ services:
     # volumesは -vの役割
     volumes:
       - '.:/rspec-tutorial'
+      - gem_data:/usr/local/bundle
 
     # ttyは -itのtを意味してる
     tty: true
     # -iを意味してる
     stdin_open: true
     environment: #以下追記
-      - SELENIUM_DRIVER_URL=http://selenium_chrome:4444//wd/hub
+      - SELENIUM_DRIVER_URL=http://selenium_chrome:4444/wd/hub
     depends_on:
       - selenium_chrome
 
@@ -23,3 +24,8 @@ services:
     image: selenium/standalone-chrome-debug
     logging:
       driver: none
+    # ports:
+    #   - '4444:4444'
+
+volumes:
+  gem_data:
